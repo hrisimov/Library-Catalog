@@ -15,8 +15,8 @@ jobs:
     - name: Install npm dependencies
       run: npm install
     - name: Start backend
-      run: npm run start-be
+      run: npm run start-be &
     - name: Start frontend
-      run: npm run start-fe
+      run: npm run start-fe &
     - name: Run UI tests
-      run: test-ui
+      run: npm run test-ui
