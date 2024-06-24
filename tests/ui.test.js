@@ -43,6 +43,7 @@ test('verify "My Books" button is visible after user login', async ({ page }) =>
     await page.fill("#email", "peter@abv.bg");
     await page.fill("#password", "123456");
     await page.click('input[type="submit"]');
+    await page.waitForURL("http://localhost:3000/catalog");
     const myBooksButton = await page.$('a[href="/profile"]');
     const isMyBooksButtonVisible = await myBooksButton.isVisible();
     expect(isMyBooksButtonVisible).toBe(true);
@@ -53,6 +54,7 @@ test('verify "Add Book" button is visible after user login', async ({ page }) =>
     await page.fill("#email", "peter@abv.bg");
     await page.fill("#password", "123456");
     await page.click('input[type="submit"]');
+    await page.waitForURL("http://localhost:3000/catalog");
     const addBookButton = await page.$('a[href="/create"]');
     const isAddBookButtonVisible = await addBookButton.isVisible();
     expect(isAddBookButtonVisible).toBe(true);
@@ -63,6 +65,7 @@ test("verify user's email address is visible", async ({ page }) => {
     await page.fill("#email", "peter@abv.bg");
     await page.fill("#password", "123456");
     await page.click('input[type="submit"]');
+    await page.waitForURL("http://localhost:3000/catalog");
     const welcomeMessageSpan = await page.$("#user > span");
     const isWelcomeMessageSpanVisible = await welcomeMessageSpan.isVisible();
     expect(isWelcomeMessageSpanVisible).toBe(true);
@@ -311,6 +314,7 @@ test("add book with empty image input field", async ({ page }) => {
 
 test("verify all books are displayed", async ({ page }) => {
     await page.goto("http://localhost:3000/catalog");
+    await page.waitForURL("http://localhost:3000/catalog");
     const bookElements = await page.$$(".other-books-list li");
     expect(bookElements).toHaveLength(3);
 });
