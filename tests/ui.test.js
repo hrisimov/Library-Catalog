@@ -314,7 +314,7 @@ test("add book with empty image input field", async ({ page }) => {
 
 test("verify all books are displayed", async ({ page }) => {
     await page.goto("http://localhost:3000/catalog");
-    await page.waitForURL("http://localhost:3000/catalog");
+    await page.waitForSelector(".other-books-list li");
     const bookElements = await page.$$(".other-books-list li");
     expect(bookElements).toHaveLength(3);
 });
